@@ -134,7 +134,7 @@ public class RestTemplateUtils {
         httpHeaders.setContentType(mediaType);
         HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(httpHeaders);
         String parameterUrl = parameterUrl(url, map);
-        return restTemplate.postForEntity(parameterUrl, httpEntity, responseType, map);
+        return restTemplate.postForEntity(parameterUrl, httpEntity, responseType);
     }
 
     /**
@@ -155,7 +155,7 @@ public class RestTemplateUtils {
         httpHeaders.setContentType(mediaType);
         HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(httpHeaders);
         String parameterUrl = parameterUrl(url, map);
-        return restTemplate.postForObject(parameterUrl, httpEntity, responseType, map);
+        return restTemplate.postForObject(parameterUrl, httpEntity, responseType);
     }
 
     /**
@@ -176,7 +176,7 @@ public class RestTemplateUtils {
         httpHeaders.setContentType(mediaType);
         HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(map, httpHeaders);
         String parameterUrl = parameterUrl(url, map);
-        return restTemplate.postForEntity(parameterUrl, httpEntity, responseType, map);
+        return restTemplate.postForEntity(parameterUrl, httpEntity, responseType);
     }
 
     /**
@@ -197,7 +197,7 @@ public class RestTemplateUtils {
         httpHeaders.setContentType(mediaType);
         HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(map, httpHeaders);
         String parameterUrl = parameterUrl(url, map);
-        return restTemplate.postForObject(parameterUrl, httpEntity, responseType, map);
+        return restTemplate.postForObject(parameterUrl, httpEntity, responseType);
     }
 
     /**
