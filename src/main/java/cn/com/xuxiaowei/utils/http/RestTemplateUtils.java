@@ -10,6 +10,7 @@ import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -23,8 +24,9 @@ public class RestTemplateUtils {
     /**
      * 获取指定编码类型的响应数据返回的 {@link RestTemplate}
      *
-     * @param charset 编码
+     * @param charset 编码，{@link StandardCharsets#UTF_8}
      * @return 返回 获取指定编码类型的响应数据
+     * @see StandardCharsets
      * @see ByteArrayHttpMessageConverter {@link RestTemplate#getMessageConverters()} 默认值，索引：0
      * @see StringHttpMessageConverter {@link RestTemplate#getMessageConverters()} 默认值，索引：1，默认编码：{@link StringHttpMessageConverter#DEFAULT_CHARSET}
      * @see ResourceHttpMessageConverter {@link RestTemplate#getMessageConverters()} 默认值，索引：2
