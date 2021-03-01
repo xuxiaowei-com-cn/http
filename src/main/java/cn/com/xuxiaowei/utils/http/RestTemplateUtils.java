@@ -201,6 +201,53 @@ public class RestTemplateUtils {
     }
 
     /**
+     * POST 发送请求流、参数（流和参数不同） 获取响应
+     *
+     * @param restTemplate {@link RestTemplate}
+     * @param url          URL
+     * @param streamMap    流，如：{@link HashMap}、{@link LinkedMultiValueMap}
+     * @param paramMap     参数，如：{@link HashMap}、{@link LinkedMultiValueMap}
+     * @param mediaType    请求流类型，如：{@link MediaType#APPLICATION_JSON}、{@link MediaType#APPLICATION_XML}
+     * @param responseType 响应数据类
+     * @param <T>          响应数据泛型
+     * @return 返回 请求结果
+     */
+    public static <T> ResponseEntity<T> postForEntityStreamOrParam(RestTemplate restTemplate, String url,
+                                                                   Map<?, ?> streamMap, Map<?, ?> paramMap,
+                                                                   @Nullable MediaType mediaType,
+                                                                   Class<T> responseType) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        // 设置请求格式
+        httpHeaders.setContentType(mediaType);
+        HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(streamMap, httpHeaders);
+        String parameterUrl = parameterUrl(url, paramMap);
+        return restTemplate.postForEntity(parameterUrl, httpEntity, responseType);
+    }
+
+    /**
+     * POST 发送请求流、参数（流和参数不同） 获取响应
+     *
+     * @param restTemplate {@link RestTemplate}
+     * @param url          URL
+     * @param streamMap    流，如：{@link HashMap}、{@link LinkedMultiValueMap}
+     * @param paramMap     参数，如：{@link HashMap}、{@link LinkedMultiValueMap}
+     * @param mediaType    请求流类型，如：{@link MediaType#APPLICATION_JSON}、{@link MediaType#APPLICATION_XML}
+     * @param responseType 响应数据类
+     * @param <T>          响应数据泛型
+     * @return 返回 请求结果
+     */
+    public static <T> T postForObjectStreamOrParam(RestTemplate restTemplate, String url,
+                                                   Map<?, ?> streamMap, Map<?, ?> paramMap,
+                                                   @Nullable MediaType mediaType, Class<T> responseType) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        // 设置请求格式
+        httpHeaders.setContentType(mediaType);
+        HttpEntity<Map<?, ?>> httpEntity = new HttpEntity<>(streamMap, httpHeaders);
+        String parameterUrl = parameterUrl(url, paramMap);
+        return restTemplate.postForObject(parameterUrl, httpEntity, responseType);
+    }
+
+    /**
      * 根据 URL与参数 获取符合发送请求的 URL
      *
      * @param url URL
