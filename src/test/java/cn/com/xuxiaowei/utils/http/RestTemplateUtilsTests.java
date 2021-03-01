@@ -122,4 +122,42 @@ public class RestTemplateUtilsTests {
         System.out.println(postForObjectStreamParamXml);
     }
 
+    @Test
+    public void postForEntityStreamOrParam() {
+        RestTemplate restTemplate = RestTemplateUtils.charset(StandardCharsets.UTF_8);
+        Map<String, String> streamMap = new HashMap<>();
+        streamMap.put("parma", UUID.randomUUID().toString());
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("parma", UUID.randomUUID().toString());
+
+        @SuppressWarnings("rawtypes")
+        ResponseEntity<Map> postForEntityStreamParamJson = RestTemplateUtils.postForEntityStreamOrParam(restTemplate,
+                URL, streamMap, paramMap, MediaType.APPLICATION_JSON, Map.class);
+        System.out.println(postForEntityStreamParamJson);
+
+        @SuppressWarnings("rawtypes")
+        ResponseEntity<Map> postForEntityStreamParamXml = RestTemplateUtils.postForEntityStreamOrParam(restTemplate,
+                URL, streamMap, paramMap, MediaType.APPLICATION_XML, Map.class);
+        System.out.println(postForEntityStreamParamXml);
+    }
+
+    @Test
+    public void postForObjectStreamOrParam() {
+        RestTemplate restTemplate = RestTemplateUtils.charset(StandardCharsets.UTF_8);
+        Map<String, String> streamMap = new HashMap<>();
+        streamMap.put("parma", UUID.randomUUID().toString());
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("parma", UUID.randomUUID().toString());
+
+        @SuppressWarnings("rawtypes")
+        Map postForObjectStreamOrParamJson = RestTemplateUtils.postForObjectStreamOrParam(restTemplate,
+                URL, streamMap, paramMap, MediaType.APPLICATION_JSON, Map.class);
+        System.out.println(postForObjectStreamOrParamJson);
+
+        @SuppressWarnings("rawtypes")
+        Map postForObjectStreamOrParamXml = RestTemplateUtils.postForObjectStreamOrParam(restTemplate,
+                URL, streamMap, paramMap, MediaType.APPLICATION_XML, Map.class);
+        System.out.println(postForObjectStreamOrParamXml);
+    }
+
 }
